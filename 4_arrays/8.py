@@ -4,28 +4,39 @@ def create_matrix(x, y):
     return [[random.randint(11, 111) for _ in range(x)] for _ in range(y)]
 
 def get_min_max(matrix):
-    min_row = [9999]
-    max_row = [0]
+    min_col = 0
+    max_col = 0
     min_num = 9999
-    max_mun = 0
+    max_num = 0
 
     for row in matrix:
-        if max(row) > max(max_row):
-            max_row, max_num = row, max(row)
+        if max(row) > max_num:
+            max_num = max(row)
+            max_col = row.index(max_num)
             continue
 
-        if min(row) < min(min_row):
-            min_row, min_num = row, min(row)
+        if min(row) < min_num:
+            min_num = min(row)
+            min_col = row.index(min_num)
 
-    return min_row, max_row, min_num, max_num
+    return min_col, max_col, min_num, max_num
+
+def display_matrix(mat):
+    for row in mat:
+        for n in row:
+            print(f"{n}".ljust(4), end="")
+        print()
 
 matrix = create_matrix(5, 5)
 
-print(matrix)
+display_matrix(matrix)     
+print("-"*5*4)
 
-min_row, max_row, min_num, max_num = get_min_max(matrix)
-matrix[matrix.index(min_row)], matrix[matrix.index(max_row)] = max_row.copy(), min_row.copy()
+min_col, max_col, min_num, max_num = get_min_max(matrix)
 
-print(matrix)
+for row in matrix:
+    row[min_col], row[max_col] = row[max_col], row[min_col]
 
-print(f"{min_num=} {max_num=}")
+display_matrix(matrix)
+
+print(f"{min_num=}, {min_col=}, {max_num=}, {max_col=}")
