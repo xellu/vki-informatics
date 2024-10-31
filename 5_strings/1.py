@@ -1,18 +1,9 @@
-import random
-import string
+#Дана строка, Написать программу, определяющую, образует ли подстрока, начинающаяся с символа номер m и заканчивающаяся символом с номером n, число 777.
 
-m = random.randint(0,9)
-n = 777
+def is_777(s, m, n):
+    return s[m:n+1] == '777'
 
-text = "".join(random.choice(string.digits+string.ascii_letters) for i in range(10))
-
-if random.choice([True, False]):
-    text = f"{m}{text}{n}"
-
-print(f"{text=}")
-
-if text.startswith(str(m)) and text.endswith(str(n)):
-    #do something if its true
-    print(True)
-else:
-    print(False)
+s = '123456777123456'
+m = 6
+n = 8
+print(is_777(s, m, n))
