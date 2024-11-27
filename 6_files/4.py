@@ -1,3 +1,5 @@
+#do not create f1.txt
+
 import random
 import string
 import os

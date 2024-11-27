@@ -1,0 +1,10 @@
+United States of America;USA;US
+Russian Federation;Russia;RF
+Czechia;Czech Republic
+United Kingdom,UK,Britain,England
+Germany
+France
+Belarus
+Japan
+South Korea;Korea
+China
