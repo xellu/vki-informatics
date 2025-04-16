@@ -20,26 +20,27 @@ int main() {
 
     for (int i = 0; i < x; i++) {
         for (int j = 0; j < y; j++) {
-            printf("%d ", arr[i][j]);
+            printf("%4d ", arr[i][j]);
         }
         printf("\n");
     }
 
     printf("\n---------\n");
 
+    int newArr[x][y];
     for (int i = 0; i < x; i++) {
         for (int j = 0; j < y; j++) {
             if (arr[i][j] > 0) {
-                arr[i][j] += arr[i][0];
+                newArr[i][j] = arr[i][j] + arr[i][0];
             } else {
-                arr[i][j] += arr[x - 1][j];
+                newArr[i][j] = arr[i][j] + arr[x - 1][j];
             }
         }
     }
 
     for (int i = 0; i < x; i++) {
         for (int j = 0; j < y; j++) {
-            printf("%d ", arr[i][j]);
+            printf("%4d ", newArr[i][j]);
         }
         printf("\n");
     }
