@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.xeldb": "json",
+        "stdio.h": "c"
+    }
+}
