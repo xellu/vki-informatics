@@ -6,7 +6,7 @@ int main() {
     char even[1000], odd[1000], result[2000];
     int even_idx = 0, odd_idx = 0;
 
-    printf("Введите строку: ");
+    printf("enter a string: ");
     fgets(input, sizeof(input), stdin);
 
     input[strcspn(input, "\n")] = '\0';
@@ -44,7 +44,7 @@ int main() {
 
     result[res_idx] = '\0';
 
-    printf("Зашифрованная строка: %s\n", result);
+    printf("encrypted string: %s\n", result);
 
     return 0;
 }
