@@ -34,12 +34,14 @@ int main() {
         token = strtok(NULL, " ");
     }
 
-    for (int i = 1; i < count; i++) {
-        if (strlen(words[i]) < strlen(words[i - 1]) ||
-            strlen(words[i]) == strlen(words[i - 1])) {
-            char *temp = words[i];
-            words[i] = words[i - 1];
-            words[i - 1] = temp;
+    for (int j = 1; j < count; j++) {
+        for (int i = 1; i < count; i++) {
+            if (strlen(words[i]) < strlen(words[i - 1]) ||
+                strlen(words[i]) == strlen(words[i - 1])) {
+                char *temp = words[i];
+                words[i] = words[i - 1];
+                words[i - 1] = temp;
+            }
         }
     }
 
