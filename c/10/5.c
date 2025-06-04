@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #define MAX_POINTS 1000
 
@@ -9,10 +10,11 @@ typedef struct {
     int y;
 } Point2D;
 
-int min_segment_length(Point2D p1, Point2D p2) {
-    int lenX = abs(p1.x - p2.x);
-    int lenY = abs(p1.y - p2.y);
-    return (lenX < lenY) ? lenX : lenY;
+float min_segment_length(Point2D p1, Point2D p2) {
+    //calculate distance between two points
+    int dx = p2.x - p1.x;
+    int dy = p2.y - p1.y;
+    return sqrt(dx * dx + dy * dy);
 }
 
 int main() {
@@ -48,15 +50,15 @@ int main() {
     for (int i = 0; i < count; i += 4) {
         Point2D p1 = { values[i], values[i+1] };
         Point2D p2 = { values[i+2], values[i+3] };
-        int msl = min_segment_length(p1, p2);
+        float msl = min_segment_length(p1, p2);
 
-        printf("p1={x: %d, y: %d} p2={x: %d, y: %d} - Min Length: %d\n", p1.x, p1.y, p2.x, p2.y, msl);
+        printf("p1={x: %d, y: %d} p2={x: %d, y: %d} - Min Length: %f\n", p1.x, p1.y, p2.x, p2.y, msl);
 
         fprintf(f2,
             "    {\n"
             "        \"p1\": {\"x\": %d, \"y\": %d},\n"
             "        \"p2\": {\"x\": %d, \"y\": %d},\n"
-            "        \"min_segment_length\": %d\n"
+            "        \"min_segment_length\": %f\n"
             "    }%s\n",
             p1.x, p1.y, p2.x, p2.y, msl,
             (i + 4 < count) ? "," : ""
