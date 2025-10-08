@@ -4,7 +4,7 @@ int main() {
 	int num, numIndex = 0;
 
 	printf("num> ");
-	scanf_s("%d", &num);
+	scanf("%d", &num);
 
 	int nums[99];
 
