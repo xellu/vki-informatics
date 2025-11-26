@@ -26,7 +26,7 @@ double toDecimalFloat(const char *num, int fromBase) {
     const char *dot = strchr(num, '.');
     int len = dot ? (dot - num) : strlen(num);
 
-    //integer
+    //cely cislo
     for (int i = 0; i < len; i++) {
         int value = charToValue(num[i]);
         if (value >= fromBase || value < 0) {
@@ -36,7 +36,7 @@ double toDecimalFloat(const char *num, int fromBase) {
         result = result * fromBase + value;
     }
 
-    //integer
+    //desetinny cislo
     if (dot) {
         double frac = 0.0;
         double divisor = fromBase;
@@ -77,7 +77,7 @@ void fromDecimalFloat(double num, int toBase, char *result) {
     }
 
     //fraction
-    int precision = 10; //num digits after decimal point
+    int precision = 15; //num digits after decimal point
     int i = 0;
     while (fraction > 0 && i < precision) {
         fraction *= toBase;
@@ -105,7 +105,7 @@ int main() {
     scanf("%d", &toBase);
 
     double decimal = toDecimalFloat(num, fromBase);
-    if (decimal < 0) return 1; // error
+    if (decimal < 0) return 1; //error
 
     char result[128];
     fromDecimalFloat(decimal, toBase, result);
