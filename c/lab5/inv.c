@@ -30,17 +30,15 @@ int main() {
     for (int i = 0; i < n; i++) printf("%d ", number[i]);
     printf("\n");
 
-    int total_permutations = factorial(n);
     int count = 0;
 
-    int inversion[100] = { 0 };
+    int inv[100] = { 0 };
 
     do {
        
 
         int permutation[100];
-        int available[101]; //available[1..n]
-
+        int available[101];
  
         for (int i = 1; i <= n; i++) {
             available[i] = 1;
@@ -51,14 +49,9 @@ int main() {
             int count = 0;
             int num = 1;
 
- 
-            while (count <= inversion[i]) {
-                if (available[num]) {
-                    count++;
-                }
-                if (count <= inversion[i]) {
-                    num++;
-                }
+            while (count <= inv[i]) {
+                if (available[num]) count++;
+                if (count <= inv[i]) num++;
             }
 
             permutation[i] = num;
@@ -67,8 +60,8 @@ int main() {
 
         getchar();
         printf("inversion ");
-        printf("%d: ", ++count);
-        for (int i = 0; i < n; i++) printf("%d, ", inversion[i]);
+        printf("#%d: ", ++count);
+        for (int i = 0; i < n; i++) printf("%d, ", inv[i]);
 
         printf("\npermutation: ");
         for (int i = 0; i < n; i++) printf("%d, ", permutation[i]);
@@ -77,12 +70,12 @@ int main() {
 
         int found = 0;
         for (int i = n - 1; i >= 0; i--) {
-            if (inversion[i] < n - 1 - i) {
-                inversion[i]++;
-                for (int j = i + 1; j < n; j++) {
-                    inversion[j] = 0;
-                }
+            if (inv[i] < n - 1 - i) {
+                inv[i]++;
+                
+                for (int j = i + 1; j < n; j++) { inv[j] = 0; }
                 found = 1;
+                
                 break;
             }
         }
