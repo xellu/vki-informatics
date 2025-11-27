@@ -1,6 +1,40 @@
 #include <stdio.h>
+#include <conio.h>  // for getch() on Windows
 
-void print(int *a, int n) {
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// Dijkstra's next permutation (returns 0 if no more permutations)
+int next_permutation(int *a, int n) {
+    int i = n - 2;
+
+    // 1. Find i such that a[i] < a[i+1]
+    while (i >= 0 && a[i] >= a[i + 1])
+        i--;
+
+    if (i < 0)
+        return 0; // last permutation reached
+
+    // 2. Find j > i such that a[j] > a[i]
+    int j = n - 1;
+    while (a[j] <= a[i])
+        j--;
+
+    // 3. Swap a[i], a[j]
+    swap(&a[i], &a[j]);
+
+    // 4. Reverse tail (i+1 ... n-1)
+    int left = i + 1, right = n - 1;
+    while (left < right)
+        swap(&a[left++], &a[right--]);
+
+    return 1;
+}
+
+void print_array(int *a, int n) {
     for (int i = 0; i < n; i++)
         printf("%d ", a[i]);
     printf("\n");
@@ -8,58 +42,23 @@ void print(int *a, int n) {
 
 int main() {
     int n;
-    printf("n=");
+
+    printf("Enter number of elements: ");
     scanf("%d", &n);
 
-    int a[n];        //cisla na prehazovani
-    int dir[n];      //smer kazdyho elementu (1 - do prava, -1 - do leva)
+    int a[n];
+    printf("Enter %d elements in sorted order:\n", n);
+    for (int i = 0; i < n; i++)
+        a[i] = i+1;
 
-    //inicializace
-    for (int i = 0; i < n; i++) {
-        a[i] = i + 1;
-        dir[i] = -1;
-    }
+    // Print first permutation
+    print_array(a, n);
+    getch(); // wait for key
 
-    print(a, n);
-
-    while (1) {
-        int mobile = -1;
-        int mobileIndex = -1;
-
-        //hledame nejvetsi hybajici se cislo
-        for (int i = 0; i < n; i++) {
-            int next = i + dir[a[i] - 1];
-            if (next >= 0 && next < n && a[i] > a[next]) {
-                if (a[i] > mobile) {
-                    mobile = a[i];
-                    mobileIndex = i;
-                }
-            }
-        }
-
-        if (mobile == -1)
-            break; //prohazovani skoncilo
-
-        //prohazujeme mistami hybajici se cislo se svym sousedem 
-        int i = mobileIndex;
-        int j = i + dir[a[i] - 1];
-
-        int tmp = a[i];
-        a[i] = a[j];
-        a[j] = tmp;
-
-        //obnovujeme index hybajiciho se cisla
-        mobileIndex = j;
-
-        //po prehozeni menime smer vsech cisel > mobile
-        for (int k = 0; k < n; k++) {
-            if (a[k] > mobile) {
-                dir[a[k] - 1] *= -1;
-            }
-        }
-
-        print(a, n);
-        getchar();
+    // Generate next permutations
+    while (next_permutation(a, n)) {
+        print_array(a, n);
+        getch(); // wait for key
     }
 
     return 0;
