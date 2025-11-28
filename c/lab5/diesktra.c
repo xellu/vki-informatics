@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 void swap(int *a, int *b) {
     int temp = *a;
@@ -46,9 +47,9 @@ int main() {
     scanf("%d", &n);
 
     int a[n];
-    printf("Enter %d elements in sorted order:\n", n);
+    
     for (int i = 0; i < n; i++)
-        scanf("%d", &a[i]);
+        a[i] = rand() % 10;
 
     // Print first permutation
     print_array(a, n);

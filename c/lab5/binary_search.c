@@ -1,4 +1,39 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+void shaker_sort(int arr[], int n) {
+    int start = 0, end = n - 1;
+    int swapped = 1;
+
+    while (swapped) {
+        swapped = 0;
+
+        // Move left -> right
+        for (int i = start; i < end; i++) {
+            if (arr[i] > arr[i + 1]) {
+                int tmp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = tmp;
+                swapped = 1;
+            }
+        }
+        if (!swapped) break;
+
+        end--; // Last element is in place
+        swapped = 0;
+
+        // Move right -> left
+        for (int i = end; i > start; i--) {
+            if (arr[i] < arr[i - 1]) {
+                int tmp = arr[i];
+                arr[i] = arr[i - 1];
+                arr[i - 1] = tmp;
+                swapped = 1;
+            }
+        }
+        start++; // First element is in place
+    }
+}
 
 int binary_search(int arr[], int n, int key) {
     int left = 0, right = n - 1;
@@ -18,6 +53,12 @@ int binary_search(int arr[], int n, int key) {
     return -1; //not found
 }
 
+void print_array(int *a, int n) {
+    for (int i = 0; i < n; i++)
+        printf("%d ", a[i]);
+    printf("\n");
+}
+
 int main() {
     int n, key;
 
@@ -26,9 +67,11 @@ int main() {
 
     int arr[n];
 
-    printf("Enter %d sorted numbers:\n", n);
     for (int i = 0; i < n; i++)
-        scanf("%d", &arr[i]);
+        arr[i] = rand() % 100;
+
+    shaker_sort(arr, n);
+    print_array(arr, n);
 
     printf("key = ");
     scanf("%d", &key);

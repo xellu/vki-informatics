@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 // Binary search to find insert position
 int binary_search(int arr[], int item, int low, int high) {
@@ -44,9 +45,11 @@ int main() {
     scanf("%d", &n);
 
     int arr[n];
-    printf("Enter %d numbers:\n", n);
+    
     for (int i = 0; i < n; i++)
-        scanf("%d", &arr[i]);
+        arr[i] = rand() % 100;
+
+    print_array(arr, n);
 
     binary_insertion_sort(arr, n);
 
