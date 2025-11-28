@@ -48,7 +48,7 @@ int main() {
     int a[n];
     printf("Enter %d elements in sorted order:\n", n);
     for (int i = 0; i < n; i++)
-        a[i] = i+1;
+        scanf("%d", &a[i]);
 
     // Print first permutation
     print_array(a, n);
