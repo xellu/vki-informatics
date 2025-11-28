@@ -17,6 +17,13 @@ int binary_search(int arr[], int item, int low, int high) {
     return low;
 }
 
+
+void print_array(int arr[], int n) {
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
 // Binary insertion sort
 void binary_insertion_sort(int arr[], int n) {
     for (int i = 1; i < n; i++) {
@@ -29,14 +36,11 @@ void binary_insertion_sort(int arr[], int n) {
             j--;
         }
         arr[j + 1] = selected;
+        print_array(arr, n);
+        getchar();
     }
 }
 
-void print_array(int arr[], int n) {
-    for (int i = 0; i < n; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
-}
 
 int main() {
     int n;
@@ -48,8 +52,6 @@ int main() {
     
     for (int i = 0; i < n; i++)
         arr[i] = rand() % 100;
-
-    print_array(arr, n);
 
     binary_insertion_sort(arr, n);
 
