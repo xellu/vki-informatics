@@ -40,7 +40,7 @@ void print_array(int arr[], int n) {
 int main() {
     int n;
 
-    printf("Enter array size: ");
+    printf("n = ");
     scanf("%d", &n);
 
     int arr[n];

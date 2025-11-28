@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>  // for getch() on Windows
 
 void swap(int *a, int *b) {
     int temp = *a;
@@ -43,7 +42,7 @@ void print_array(int *a, int n) {
 int main() {
     int n;
 
-    printf("Enter number of elements: ");
+    printf("n = ");
     scanf("%d", &n);
 
     int a[n];
@@ -53,12 +52,12 @@ int main() {
 
     // Print first permutation
     print_array(a, n);
-    getch(); // wait for key
+    getchar(); // wait for key
 
     // Generate next permutations
     while (next_permutation(a, n)) {
         print_array(a, n);
-        getch(); // wait for key
+        getchar(); // wait for key
     }
 
     return 0;

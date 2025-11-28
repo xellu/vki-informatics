@@ -41,20 +41,20 @@ int boyer_moore(char *text, char *pattern) {
 int main() {
     char text[256], pattern[256];
 
-    printf("Enter text:\n");
+    printf("Text:\n");
     fgets(text, sizeof(text), stdin);
     text[strcspn(text, "\n")] = '\0';
 
-    printf("Enter pattern to search:\n");
+    printf("Pattern to query:\n");
     fgets(pattern, sizeof(pattern), stdin);
     pattern[strcspn(pattern, "\n")] = '\0';
 
     int pos = boyer_moore(text, pattern);
 
     if (pos != -1)
-        printf("Pattern found at position %d\n", pos);
+        printf("Found at position %d\n", pos);
     else
-        printf("Pattern not found.\n");
+        printf("Not found.\n");
 
     return 0;
 }
